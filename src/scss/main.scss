@@ -1,0 +1,17 @@
+$primary: #fdc000;
+$black: #333;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 704px,
+  lg: 9240px,
+  xl: 1140px,
+  xxl: 1364px,
+);
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
+// Required
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
