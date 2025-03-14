@@ -101,7 +101,5 @@ export default {
 };
 
 async function _fetchMovie(payload) {
-  //functions/movie.js 이동 후 아래코드 적용
-
-  return await axios.post("/.netlify/movie", payload);
+  return await axios.post("/.netlify/functions/movie", payload);
 }

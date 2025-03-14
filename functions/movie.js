@@ -11,7 +11,8 @@ exports.handler = async (event) => {
   // const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}`;
 
   try {
-    const { data } = axiox.get(url);
+    // 수정: 'axiox.get(url)'에서 'await axios.get(url)'로 변경 - 오타 수정 및 비동기 처리 추가
+    const { data } = await axios.get(url);
     if (data.Error) {
       return {
         statusCode: 400,
