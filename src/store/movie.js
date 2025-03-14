@@ -65,10 +65,10 @@ export default {
             });
           }
         }
-      } catch (msg) {
+      } catch ({ message }) {
         commit("updateState", {
           movies: [],
-          msg,
+          message,
         });
       } finally {
         commit("updateState", {
@@ -100,25 +100,8 @@ export default {
   },
 };
 
-function _fetchMovie(payload) {
-  const { title, type, year, page, id } = payload;
-  const OMDB_API_KEY = "7035c60c";
-  const url = id ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}` : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${title}&type=${type}&y=${year}&page=${page}`;
+async function _fetchMovie(payload) {
+  //functions/movie.js 이동 후 아래코드 적용
 
-  /* 에러발생 시키기 위한 코드 */
-  // const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}`;
-  return new Promise(function (resolve, reject) {
-    axios
-      .get(url)
-      .then(function (result) {
-        // console.log(result);
-        if (result.data.Error) {
-          reject(result.data.Error);
-        }
-        resolve(result);
-      })
-      .catch(function (error) {
-        reject(error.msg);
-      });
-  });
+  return await axios.post("/.netlify/movie", payload);
 }
