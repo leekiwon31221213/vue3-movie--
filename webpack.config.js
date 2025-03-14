@@ -8,6 +8,7 @@ const path = _require("path");
 const HtmlPlugin = _require("html-webpack-plugin");
 const CopyPlugin = _require("copy-webpack-plugin");
 const { VueLoaderPlugin } = _require("vue-loader");
+const Dotenv = _require("dotenv-webpack");
 
 module.exports = {
   resolve: {
@@ -71,6 +72,7 @@ module.exports = {
       patterns: [{ from: "static" }],
     }),
     new VueLoaderPlugin(),
+    new Dotenv(),
   ],
 
   // 개발 서버 옵션
