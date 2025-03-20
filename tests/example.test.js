@@ -1,29 +1,14 @@
-import { asyncFn } from "./example";
+import { mount } from "@vue/test-utils";
+import Example from "./Example.vue";
 
-describe("비동기 테스트", () => {
-  //test 함수는 최대 5초까지만 기다림
-  test("done", (done) => {
-    asyncFn().then((response) => {
-      expect(response).toBe("Done!");
-      done();
-    });
-  });
+test("메세지를 변경합니다", async () => {
+  const wrapper = mount(Example);
+  // wrapper.vm === this
+  expect(wrapper.vm.msg).toBe("Hello VUE");
 
-  test("then", () => {
-    return asyncFn().then((response) => {
-      expect(response).toBe("Done!");
-    });
-  });
+  // wrapper.vm.msg = "Hello Kiwon";
+  await wrapper.setData({ msg: "Hello Kiwon" });
+  expect(wrapper.vm.msg).toBe("Hello Kiwon");
 
-  test("resolves", () => {
-    // return expect(asyncFn()).resolves.toBe("Done?"); // 실패
-    return expect(asyncFn()).resolves.toBe("Done!");
-  });
-
-  test("async/await", async () => {
-    const response = await asyncFn();
-    // expect(respons).toBe("Done?"); // 실패
-    expect(response).toBe("Done!");
-  }),
-    7000;
+  expect(wrapper.find("h1").text()).toBe("Hello Kiwon");
 });
